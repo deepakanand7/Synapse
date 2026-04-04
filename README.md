@@ -1,0 +1,2 @@
+# Synapse
+Syllabus tracker app

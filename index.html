@@ -65,6 +65,7 @@
             <button class="tab-btn" onclick="switchMainTab('subjects')">📚 Study</button>
             <button class="tab-btn" onclick="switchMainTab('charts')">📈 Stats</button>
             <button class="tab-btn" onclick="switchMainTab('leaderboard')">🏆 Ranks</button>
+            <button class="tab-btn" onclick="switchMainTab('templates')">📝 Syllabus</button>
             <button class="tab-btn" onclick="switchMainTab('profile')">👤 Profile</button>
         </div>
 
@@ -141,7 +142,55 @@
                     </div>
                 </div>
             </div>
+<!-- Templates Tab -->
+<div id="templatesTab" style="display:none">
+    <div class="card">
+        <h2 class="card-title">📝 CBSE Class 12</h2>
+        <p style="color:#666;font-size:12px;margin-bottom:16px">
+            Select a subject to auto-import all chapters
+        </p>
+        <div class="template-grid">
+            <div class="template-card" onclick="importTemplate('physics')">
+                <div class="template-icon">⚛️</div>
+                <div class="template-name">Physics</div>
+                <div class="template-count">15 chapters</div>
+            </div>
+            <div class="template-card" onclick="importTemplate('chemistry')">
+                <div class="template-icon">🧪</div>
+                <div class="template-name">Chemistry</div>
+                <div class="template-count">16 chapters</div>
+            </div>
+            <div class="template-card" onclick="importTemplate('maths')">
+                <div class="template-icon">📐</div>
+                <div class="template-name">Maths</div>
+                <div class="template-count">13 chapters</div>
+            </div>
+            <div class="template-card" onclick="importTemplate('biology')">
+                <div class="template-icon">🧬</div>
+                <div class="template-name">Biology</div>
+                <div class="template-count">16 chapters</div>
+            </div>
+            <div class="template-card" onclick="importTemplate('english')">
+                <div class="template-icon">📖</div>
+                <div class="template-name">English</div>
+                <div class="template-count">8 chapters</div>
+            </div>
+            <div class="template-card" onclick="importTemplate('accounts')">
+                <div class="template-icon">💼</div>
+                <div class="template-name">Accounts</div>
+                <div class="template-count">9 chapters</div>
+            </div>
+        </div>
+    </div>
 
+    <div class="card">
+        <h2 class="card-title">🎯 More Coming Soon</h2>
+        <div style="text-align:center;padding:20px;color:#666">
+            <div style="font-size:40px;margin-bottom:12px">🚀</div>
+            <p style="font-size:14px">JEE and NEET templates coming in next update!</p>
+        </div>
+    </div>
+</div>
             <!-- Profile Tab -->
             <div id="profileTab" style="display:none">
                 <div class="profile-header-card">

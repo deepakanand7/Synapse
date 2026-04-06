@@ -1,0 +1,69 @@
+/* Leaderboard */
+.leaderboard-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: #0d0d14;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    border: 1px solid #2d2d44;
+    transition: all 0.3s;
+    animation: slideIn 0.3s ease;
+}
+
+.leaderboard-item:hover {
+    border-color: #7c3aed;
+    box-shadow: 0 0 10px rgba(124,58,237,0.2);
+}
+
+.leaderboard-me {
+    border-color: #7c3aed !important;
+    background: linear-gradient(135deg, #1a0533, #0d0d14) !important;
+    box-shadow: 0 0 15px rgba(124,58,237,0.4) !important;
+}
+
+.leaderboard-rank {
+    font-size: 20px;
+    width: 30px;
+    text-align: center;
+}
+
+.leaderboard-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #2d2d44;
+}
+
+.leaderboard-info {
+    flex: 1;
+}
+
+.leaderboard-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.leaderboard-stats {
+    font-size: 12px;
+    color: #666;
+    margin-top: 2px;
+}
+
+.leaderboard-xp {
+    text-align: right;
+}
+
+.leaderboard-xp-number {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    color: #a855f7;
+}
+
+.leaderboard-xp-label {
+    font-size: 11px;
+    color: #666;
+}

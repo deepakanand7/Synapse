@@ -686,3 +686,43 @@ body {
 .empty-state-text {
     font-size: 14px;
       }
+/* Templates */
+.template-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.template-card {
+    background: #0d0d14;
+    border: 1px solid #2d2d44;
+    border-radius: 16px;
+    padding: 20px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    animation: fadeIn 0.5s ease;
+}
+
+.template-card:hover {
+    border-color: #7c3aed;
+    box-shadow: 0 0 20px rgba(124,58,237,0.3);
+    transform: translateY(-2px);
+}
+
+.template-icon {
+    font-size: 36px;
+    margin-bottom: 8px;
+}
+
+.template-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+.template-count {
+    font-size: 11px;
+    color: #7c3aed;
+}

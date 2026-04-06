@@ -493,3 +493,157 @@ function checkStreak() {
     saveToSupabase();
     updateStats();
 }
+// Syllabus Templates
+const syllabusTemplates = {
+    physics: {
+        name: 'Physics (CBSE 12)',
+        topics: [
+            'Electric Charges and Fields',
+            'Electrostatic Potential and Capacitance',
+            'Current Electricity',
+            'Moving Charges and Magnetism',
+            'Magnetism and Matter',
+            'Electromagnetic Induction',
+            'Alternating Current',
+            'Electromagnetic Waves',
+            'Ray Optics and Optical Instruments',
+            'Wave Optics',
+            'Dual Nature of Radiation and Matter',
+            'Atoms',
+            'Nuclei',
+            'Semiconductor Electronics',
+            'Communication Systems'
+        ]
+    },
+    chemistry: {
+        name: 'Chemistry (CBSE 12)',
+        topics: [
+            'The Solid State',
+            'Solutions',
+            'Electrochemistry',
+            'Chemical Kinetics',
+            'Surface Chemistry',
+            'General Principles of Isolation of Elements',
+            'The p-Block Elements',
+            'The d and f Block Elements',
+            'Coordination Compounds',
+            'Haloalkanes and Haloarenes',
+            'Alcohols Phenols and Ethers',
+            'Aldehydes Ketones and Carboxylic Acids',
+            'Amines',
+            'Biomolecules',
+            'Polymers',
+            'Chemistry in Everyday Life'
+        ]
+    },
+    maths: {
+        name: 'Mathematics (CBSE 12)',
+        topics: [
+            'Relations and Functions',
+            'Inverse Trigonometric Functions',
+            'Matrices',
+            'Determinants',
+            'Continuity and Differentiability',
+            'Application of Derivatives',
+            'Integrals',
+            'Application of Integrals',
+            'Differential Equations',
+            'Vector Algebra',
+            'Three Dimensional Geometry',
+            'Linear Programming',
+            'Probability'
+        ]
+    },
+    biology: {
+        name: 'Biology (CBSE 12)',
+        topics: [
+            'Reproduction in Organisms',
+            'Sexual Reproduction in Flowering Plants',
+            'Human Reproduction',
+            'Reproductive Health',
+            'Principles of Inheritance and Variation',
+            'Molecular Basis of Inheritance',
+            'Evolution',
+            'Human Health and Disease',
+            'Strategies for Enhancement in Food Production',
+            'Microbes in Human Welfare',
+            'Biotechnology Principles and Processes',
+            'Biotechnology and its Applications',
+            'Organisms and Populations',
+            'Ecosystem',
+            'Biodiversity and Conservation',
+            'Environmental Issues'
+        ]
+    },
+    english: {
+        name: 'English (CBSE 12)',
+        topics: [
+            'The Last Lesson',
+            'Lost Spring',
+            'Deep Water',
+            'The Rattrap',
+            'Indigo',
+            'Poets and Pancakes',
+            'The Interview',
+            'Going Places',
+            'My Mother at Sixty Six',
+            'An Elementary School Classroom in a Slum',
+            'Keeping Quiet',
+            'A Thing of Beauty',
+            'A Roadside Stand',
+            'Aunt Jennifers Tigers'
+        ]
+    },
+    accounts: {
+        name: 'Accountancy (CBSE 12)',
+        topics: [
+            'Accounting for Partnership Firms',
+            'Change in Profit Sharing Ratio',
+            'Admission of a Partner',
+            'Retirement of a Partner',
+            'Death of a Partner',
+            'Dissolution of Partnership Firm',
+            'Share Capital',
+            'Issue and Redemption of Debentures',
+            'Financial Statements of Companies',
+            'Analysis of Financial Statements',
+            'Cash Flow Statement'
+        ]
+    }
+};
+
+function importTemplate(subject) {
+    const template = syllabusTemplates[subject];
+    if (!template) return;
+
+    if (confirm(`Import ${template.name}?\n${template.topics.length} chapters will be added!`)) {
+        const existingSubject = subjects.find(s =>
+            s.name.toLowerCase() === template.name.toLowerCase()
+        );
+
+        if (existingSubject) {
+            alert('This subject already exists!');
+            return;
+        }
+
+        const newSubject = {
+            id: Date.now(),
+            name: template.name,
+            topics: template.topics.map((topic, index) => ({
+                id: Date.now() + index,
+                name: topic,
+                completed: false
+            })),
+            createdAt: new Date().toISOString()
+        };
+
+        subjects.push(newSubject);
+        saveToSupabase();
+        updateStats();
+        renderSubjects();
+        renderRingChart();
+
+        alert(`✅ ${template.name} imported successfully!\n${template.topics.length} chapters added.`);
+        switchMainTab('subjects');
+    }
+}

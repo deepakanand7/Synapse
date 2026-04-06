@@ -481,8 +481,15 @@ function renderCharts() {
         }
     });
 }
-
 function checkStreak() {
     if (!currentUser) return;
     const lastStudy = localStorage.getItem('lastStudy_' + currentUser.id);
-    const tod
+    const today = new Date().toDateString();
+    if (lastStudy === today) return;
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    streak = lastStudy === yesterday.toDateString() ? streak + 1 : 1;
+    localStorage.setItem('lastStudy_' + currentUser.id, today);
+    saveToSupabase();
+    updateStats();
+}

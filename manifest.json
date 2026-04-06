@@ -1,0 +1,22 @@
+{
+  "name": "Synapse - RPG Study System",
+  "short_name": "Synapse",
+  "description": "Your personal RPG syllabus tracker",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0d14",
+  "theme_color": "#7c3aed",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://api.dicebear.com/7.x/shapes/svg?seed=synapse&size=192",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "https://api.dicebear.com/7.x/shapes/svg?seed=synapse&size=512",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

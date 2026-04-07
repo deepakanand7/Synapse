@@ -1,13 +1,12 @@
-<!DOCTYPE html>
+                    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#7c3aed">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Synapse">
-<link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Synapse">
+    <link rel="manifest" href="/manifest.json">
     <title>Synapse</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -15,8 +14,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-
-    <!-- Auth Screen -->
     <div class="auth-screen" id="authScreen">
         <div class="auth-card">
             <h1 class="logo">⚡ Synapse</h1>
@@ -40,7 +37,6 @@
         </div>
     </div>
 
-    <!-- Main App -->
     <div class="app" id="mainApp" style="display:none">
         <header class="header">
             <div class="header-left">
@@ -54,47 +50,35 @@
 
         <div class="xp-section">
             <span class="xp-text">XP: <span id="totalXP">0</span></span>
-            <div class="xp-bar">
-                <div class="xp-fill" id="xpFill"></div>
-            </div>
+            <div class="xp-bar"><div class="xp-fill" id="xpFill"></div></div>
         </div>
 
-        <!-- Tab Navigation -->
-<div class="tab-nav"><button class="tab-btn active" onclick="switchMainTab('dashboard')">📊</button><button class="tab-btn" onclick="switchMainTab('subjects')">📚</button><button class="tab-btn" onclick="switchMainTab('charts')">📈</button><button class="tab-btn" onclick="switchMainTab('leaderboard')">🏆</button><button class="tab-btn" onclick="switchMainTab('templates')">📝</button><button class="tab-btn" onclick="switchMainTab('profile')">👤</button></div>
+        <div class="tab-nav">
+            <button class="tab-btn active" onclick="switchMainTab('dashboard')">📊</button>
+            <button class="tab-btn" onclick="switchMainTab('subjects')">📚</button>
+            <button class="tab-btn" onclick="switchMainTab('charts')">📈</button>
+            <button class="tab-btn" onclick="switchMainTab('leaderboard')">🏆</button>
+            <button class="tab-btn" onclick="switchMainTab('templates')">📝</button>
+            <button class="tab-btn" onclick="switchMainTab('profile')">👤</button>
+        </div>
 
-            <!-- Dashboard Tab -->
+        <main class="main">
             <div id="dashboardTab">
                 <div class="stats-row">
-                    <div class="stat-card">
-                        <span class="stat-number" id="totalSubjects">0</span>
-                        <span class="stat-label">Subjects</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number" id="totalTopics">0</span>
-                        <span class="stat-label">Topics</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number" id="completedTopics">0</span>
-                        <span class="stat-label">Done</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number" id="streakCount">0🔥</span>
-                        <span class="stat-label">Streak</span>
-                    </div>
+                    <div class="stat-card"><span class="stat-number" id="totalSubjects">0</span><span class="stat-label">Subjects</span></div>
+                    <div class="stat-card"><span class="stat-number" id="totalTopics">0</span><span class="stat-label">Topics</span></div>
+                    <div class="stat-card"><span class="stat-number" id="completedTopics">0</span><span class="stat-label">Done</span></div>
+                    <div class="stat-card"><span class="stat-number" id="streakCount">0🔥</span><span class="stat-label">Streak</span></div>
                 </div>
                 <div class="card">
                     <h2 class="card-title">🎯 Overall Progress</h2>
                     <div class="ring-container">
                         <canvas id="overallRing" width="200" height="200"></canvas>
-                        <div class="ring-text">
-                            <span id="overallPercent">0%</span>
-                            <small>Complete</small>
-                        </div>
+                        <div class="ring-text"><span id="overallPercent">0%</span><small>Complete</small></div>
                     </div>
                 </div>
             </div>
 
-            <!-- Subjects Tab -->
             <div id="subjectsTab" style="display:none">
                 <div class="card">
                     <h2 class="card-title">➕ Add Subject</h2>
@@ -106,83 +90,41 @@
                 <div id="subjectsList"></div>
             </div>
 
-            <!-- Charts Tab -->
             <div id="chartsTab" style="display:none">
-                <div class="card">
-                    <h2 class="card-title">📊 Subject Progress</h2>
-                    <canvas id="subjectChart"></canvas>
-                </div>
-                <div class="card">
-                    <h2 class="card-title">🏆 XP Progress</h2>
-                    <canvas id="xpChart"></canvas>
-                </div>
+                <div class="card"><h2 class="card-title">📊 Subject Progress</h2><canvas id="subjectChart"></canvas></div>
+                <div class="card"><h2 class="card-title">🏆 XP Progress</h2><canvas id="xpChart"></canvas></div>
             </div>
 
-            <!-- Leaderboard Tab -->
             <div id="leaderboardTab" style="display:none">
                 <div class="card">
                     <h2 class="card-title">🏆 Top Hunters</h2>
-                    <p style="color:#666;font-size:12px;margin-bottom:16px">
-                        Rankings update when you study!
-                    </p>
-                    <div id="leaderboardList">
-                        <div class="empty-state">
-                            <div class="empty-state-icon">🏆</div>
-                            <div class="empty-state-text">Loading rankings...</div>
-                        </div>
+                    <p style="color:#666;font-size:12px;margin-bottom:16px">Rankings update when you study!</p>
+                    <div id="leaderboardList"></div>
+                </div>
+            </div>
+
+            <div id="templatesTab" style="display:none">
+                <div class="card">
+                    <h2 class="card-title">📝 CBSE Class 12</h2>
+                    <p style="color:#666;font-size:12px;margin-bottom:16px">Tap a subject to auto-import all chapters</p>
+                    <div class="template-grid">
+                        <div class="template-card" onclick="importTemplate('physics')"><div class="template-icon">⚛️</div><div class="template-name">Physics</div><div class="template-count">15 chapters</div></div>
+                        <div class="template-card" onclick="importTemplate('chemistry')"><div class="template-icon">🧪</div><div class="template-name">Chemistry</div><div class="template-count">16 chapters</div></div>
+                        <div class="template-card" onclick="importTemplate('maths')"><div class="template-icon">📐</div><div class="template-name">Maths</div><div class="template-count">13 chapters</div></div>
+                        <div class="template-card" onclick="importTemplate('biology')"><div class="template-icon">🧬</div><div class="template-name">Biology</div><div class="template-count">16 chapters</div></div>
+                        <div class="template-card" onclick="importTemplate('english')"><div class="template-icon">📖</div><div class="template-name">English</div><div class="template-count">14 chapters</div></div>
+                        <div class="template-card" onclick="importTemplate('accounts')"><div class="template-icon">💼</div><div class="template-name">Accounts</div><div class="template-count">11 chapters</div></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2 class="card-title">🚀 Coming Soon</h2>
+                    <div style="text-align:center;padding:20px;color:#666">
+                        <div style="font-size:40px;margin-bottom:12px">🎯</div>
+                        <p style="font-size:14px">JEE and NEET templates coming next!</p>
                     </div>
                 </div>
             </div>
-<!-- Templates Tab -->
-<div id="templatesTab" style="display:none">
-    <div class="card">
-        <h2 class="card-title">📝 CBSE Class 12</h2>
-        <p style="color:#666;font-size:12px;margin-bottom:16px">
-            Select a subject to auto-import all chapters
-        </p>
-        <div class="template-grid">
-            <div class="template-card" onclick="importTemplate('physics')">
-                <div class="template-icon">⚛️</div>
-                <div class="template-name">Physics</div>
-                <div class="template-count">15 chapters</div>
-            </div>
-            <div class="template-card" onclick="importTemplate('chemistry')">
-                <div class="template-icon">🧪</div>
-                <div class="template-name">Chemistry</div>
-                <div class="template-count">16 chapters</div>
-            </div>
-            <div class="template-card" onclick="importTemplate('maths')">
-                <div class="template-icon">📐</div>
-                <div class="template-name">Maths</div>
-                <div class="template-count">13 chapters</div>
-            </div>
-            <div class="template-card" onclick="importTemplate('biology')">
-                <div class="template-icon">🧬</div>
-                <div class="template-name">Biology</div>
-                <div class="template-count">16 chapters</div>
-            </div>
-            <div class="template-card" onclick="importTemplate('english')">
-                <div class="template-icon">📖</div>
-                <div class="template-name">English</div>
-                <div class="template-count">8 chapters</div>
-            </div>
-            <div class="template-card" onclick="importTemplate('accounts')">
-                <div class="template-icon">💼</div>
-                <div class="template-name">Accounts</div>
-                <div class="template-count">9 chapters</div>
-            </div>
-        </div>
-    </div>
 
-    <div class="card">
-        <h2 class="card-title">🎯 More Coming Soon</h2>
-        <div style="text-align:center;padding:20px;color:#666">
-            <div style="font-size:40px;margin-bottom:12px">🚀</div>
-            <p style="font-size:14px">JEE and NEET templates coming in next update!</p>
-        </div>
-    </div>
-</div>
-            <!-- Profile Tab -->
             <div id="profileTab" style="display:none">
                 <div class="profile-header-card">
                     <div class="profile-avatar-container">
@@ -193,61 +135,38 @@
                     <p class="profile-email" id="profileEmail"></p>
                     <div class="profile-level-badge" id="profileLevel">⚡ LVL 1 Hunter</div>
                 </div>
-
                 <div class="stats-row">
-                    <div class="stat-card">
-                        <span class="stat-number" id="profileSubjects">0</span>
-                        <span class="stat-label">Subjects</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number" id="profileTopics">0</span>
-                        <span class="stat-label">Topics</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number" id="profileCompleted">0</span>
-                        <span class="stat-label">Completed</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number" id="profileStreak">0🔥</span>
-                        <span class="stat-label">Streak</span>
-                    </div>
+                    <div class="stat-card"><span class="stat-number" id="profileSubjects">0</span><span class="stat-label">Subjects</span></div>
+                    <div class="stat-card"><span class="stat-number" id="profileTopics">0</span><span class="stat-label">Topics</span></div>
+                    <div class="stat-card"><span class="stat-number" id="profileCompleted">0</span><span class="stat-label">Completed</span></div>
+                    <div class="stat-card"><span class="stat-number" id="profileStreak">0🔥</span><span class="stat-label">Streak</span></div>
                 </div>
-
                 <div class="card">
                     <h2 class="card-title">🏆 Achievements</h2>
                     <div id="achievementsList"></div>
                 </div>
-
                 <div class="card">
                     <h2 class="card-title">⚡ XP Progress</h2>
                     <div class="xp-detail">
-                        <div class="xp-detail-bar">
-                            <div class="xp-detail-fill" id="profileXPFill"></div>
-                        </div>
-                        <div class="xp-detail-text">
-                            <span id="profileXPText">0 / 100 XP</span>
-                            <span id="profileNextLevel">Next: LVL 2</span>
-                        </div>
+                        <div class="xp-detail-bar"><div class="xp-detail-fill" id="profileXPFill"></div></div>
+                        <div class="xp-detail-text"><span id="profileXPText">0 / 100 XP</span><span id="profileNextLevel">Next: LVL 2</span></div>
                     </div>
                 </div>
-
-                <button onclick="logoutUser()" class="btn-danger">
-                    🚪 Logout
-                </button>
+                <button onclick="logoutUser()" class="btn-danger">🚪 Logout</button>
             </div>
-
         </main>
     </div>
-<script>
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then(() => console.log('SW registered ✅'))
-            .catch(err => console.log('SW error:', err));
-    });
-}
-</script>
+
+    <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then(() => console.log('SW registered ✅'))
+                .catch(err => console.log('SW error:', err));
+        });
+    }
+    </script>
     <script src="supabase.js"></script>
     <script src="app.js"></script>
 </body>
-  </html>
+                                                                                                                             </html>

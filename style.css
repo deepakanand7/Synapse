@@ -240,11 +240,6 @@ body {
 }
 
 .tab-btn {
-    flex: 0 0 auto;
-    min-width: 80px;
-}
-
-.tab-btn {
     flex: 1;
     padding: 10px 4px;
     border: none;

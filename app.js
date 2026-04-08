@@ -22,9 +22,27 @@ function showAuth() {
 }
 
 async function showApp() {
-    document.getElementById('authScreen').style.display = 'none';
-    document.getElementById('mainApp').style.display = 'block';
-    await loadFromSupabase();
+    // 1. First, check if the app elements exist to avoid errors
+    const auth = document.getElementById('authScreen');
+    const main = document.getElementById('mainApp');
+
+    try {
+        // 2. Try to get the data FIRST
+        await loadFromSupabase(); 
+        
+        // 3. ONLY if the data loads, show the app
+        auth.style.display = 'none';
+        main.style.display = 'block';
+
+        // 4. Run your charts and stats
+        updateStats();
+        renderSubjects();
+    } catch (error) {
+        // 5. If it fails, don't freeze! Tell us what's wrong.
+        console.error("Database Error:", error);
+        alert("Failed to load data. Please check your internet.");
+    }
+}
     updateStats();
     renderSubjects();
     updateXPBar();

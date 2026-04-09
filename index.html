@@ -158,7 +158,13 @@ if ('serviceWorker' in navigator) {
     });
 }
 </script>
+ <script>
+window.onerror = function(msg, url, line) {
+    document.getElementById('authMessage').textContent = 'Error: ' + msg + ' line ' + line;
+    return false;
+}
+ </script>
 <script src="supabase.js"></script>
 <script src="app.js"></script>
 </body>
-                      </html>
+</html>

@@ -480,3 +480,147 @@ function importTemplate(subject) {
         alert(`✅ ${template.name} imported!`);
     }
 }
+// B Pharmacy Sem 2 Templates
+const bpharmTemplates = {
+    bpharm_hap2: {
+        name: 'HAP-II (BP201T)',
+        topics: [
+            'Module 1: Nervous System - Organization, Neuron, Neuroglia',
+            'Module 1: Action Potential, Nerve Impulse, Receptors, Synapse',
+            'Module 1: CNS - Brain Structure and Functions',
+            'Module 1: Spinal Cord and Reflex Activity',
+            'Module 2: Digestive System - GI Tract Anatomy',
+            'Module 2: Stomach, Small Intestine, Large Intestine Functions',
+            'Module 2: Digestion, Absorption, GIT Disorders',
+            'Module 2: Energetics - ATP, Creatinine Phosphate, BMR',
+            'Module 3: Respiratory System Anatomy and Mechanism',
+            'Module 3: Lung Volumes, Transport of Gases',
+            'Module 3: Urinary System - Kidney and Nephrons',
+            'Module 3: Urine Formation, Micturition, RAS',
+            'Module 4: Endocrine System - Classification of Hormones',
+            'Module 4: Pituitary, Thyroid, Parathyroid, Adrenal Glands',
+            'Module 4: Pancreas, Pineal, Thymus and Disorders',
+            'Module 5: Male and Female Reproductive System',
+            'Module 5: Sex Hormones, Menstruation, Fertilization',
+            'Module 5: Spermatogenesis, Oogenesis, Pregnancy',
+            'Module 5: Introduction to Genetics - Chromosomes, DNA'
+        ]
+    },
+    bpharm_poc1: {
+        name: 'Pharma Organic Chem-I (BP202T)',
+        topics: [
+            'Module 1: Classification of Organic Compounds',
+            'Module 1: IUPAC Nomenclature (up to 10 Carbons)',
+            'Module 1: Structural Isomerism in Organic Compounds',
+            'Module 2: Alkanes - SP3 Hybridization, Halogenation',
+            'Module 2: Alkenes - SP2 Hybridization, E1 and E2 Reactions',
+            'Module 2: Markownikoffs Orientation, Free Radical Addition',
+            'Module 2: Conjugated Dienes - Diel-Alder Reaction',
+            'Module 3: Alkyl Halides - SN1 and SN2 Reactions',
+            'Module 3: Stereochemistry and Rearrangement',
+            'Module 3: Structure and Uses of Chloroform, Iodoform',
+            'Module 3: Alcohols - Ethyl, Methyl, Glycerol, Propylene Glycol',
+            'Module 4: Carbonyl Compounds - Aldehydes and Ketones',
+            'Module 4: Aldol Condensation, Cannizzaro, Benzoin Reactions',
+            'Module 4: Formaldehyde, Acetone, Chloral Hydrate Uses',
+            'Module 5: Carboxylic Acids - Acidity and Inductive Effect',
+            'Module 5: Acetic, Lactic, Tartaric, Citric, Salicylic Acids',
+            'Module 5: Aliphatic Amines - Basicity and Substituent Effects'
+        ]
+    },
+    bpharm_biochem: {
+        name: 'Biochemistry (BP203T)',
+        topics: [
+            'Module 1: Biomolecules - Carbohydrates, Lipids, Nucleic Acids',
+            'Module 1: Amino Acids and Proteins Classification',
+            'Module 1: Bioenergetics - Free Energy, Enthalpy, Entropy',
+            'Module 1: ATP, Cyclic AMP - Biological Significance',
+            'Module 2: Glycolysis - Pathway, Energetics, Significance',
+            'Module 2: Citric Acid Cycle - Pathway and Significance',
+            'Module 2: HMP Shunt, G6PD Deficiency',
+            'Module 2: Glycogen Metabolism and Storage Diseases',
+            'Module 2: Gluconeogenesis and Blood Glucose Regulation',
+            'Module 2: Electron Transport Chain Mechanism',
+            'Module 2: Oxidative Phosphorylation and Inhibitors',
+            'Module 3: Beta Oxidation of Fatty Acids',
+            'Module 3: Ketone Bodies and Ketoacidosis',
+            'Module 3: De Novo Synthesis of Fatty Acids',
+            'Module 3: Cholesterol - Bile Acids, Steroid Hormones',
+            'Module 3: Disorders - Hypercholesterolemia, Atherosclerosis',
+            'Module 3: Amino Acid Metabolism - Transamination, Urea Cycle',
+            'Module 3: Phenylketonuria, Albinism, Tyrosinemia',
+            'Module 3: Catabolism of Heme and Jaundice',
+            'Module 4: Biosynthesis of Purine and Pyrimidine Nucleotides',
+            'Module 4: Hyperuricemia and Gout Disease',
+            'Module 4: DNA Structure, Replication (Semi Conservative)',
+            'Module 4: Transcription and RNA Synthesis',
+            'Module 4: Genetic Code, Translation, Protein Synthesis',
+            'Module 5: Enzyme Classification and Properties',
+            'Module 5: Enzyme Kinetics - Michaelis Plot, Lineweaver Burke',
+            'Module 5: Enzyme Inhibitors and Regulation',
+            'Module 5: Therapeutic and Diagnostic Applications of Enzymes'
+        ]
+    },
+    bpharm_patho: {
+        name: 'Pathophysiology (BP204T)',
+        topics: [
+            'Module 1: Cell Injury - Causes and Pathogenesis',
+            'Module 1: Adaptive Changes - Atrophy, Hypertrophy, Hyperplasia',
+            'Module 1: Cell Death, Acidosis, Alkalosis, Electrolyte Imbalance',
+            'Module 1: Inflammation - Types and Mechanism',
+            'Module 1: Wound Healing and Atherosclerosis',
+            'Module 2: Hypertension and Congestive Heart Failure',
+            'Module 2: Ischemic Heart Disease, Angina, MI',
+            'Module 2: Respiratory - Asthma, COPD',
+            'Module 2: Renal - Acute and Chronic Renal Failure',
+            'Module 3: Haematological Diseases - Iron Deficiency Anemia',
+            'Module 3: Megaloblastic, Sickle Cell, Thalassemia',
+            'Module 3: Haemophilia',
+            'Module 3: Endocrine - Diabetes, Thyroid Disorders',
+            'Module 3: Nervous System - Epilepsy, Parkinsons Disease',
+            'Module 3: Depression, Schizophrenia, Alzheimers Disease',
+            'Module 3: Peptic Ulcer',
+            'Module 4: IBD, Jaundice, Hepatitis A B C D E',
+            'Module 4: Liver Diseases',
+            'Module 5: Neoplasia - Types and Pathogenesis',
+            'Module 5: Infectious Diseases'
+        ]
+    },
+    bpharm_computer: {
+        name: 'Computer Applications (BP205T)',
+        topics: [
+            'Module 1: Introduction to Computers - Hardware, Software',
+            'Module 1: Operating Systems - Windows, Linux Basics',
+            'Module 2: MS Word - Document Creation and Formatting',
+            'Module 2: MS Excel - Spreadsheets and Formulas',
+            'Module 3: MS PowerPoint - Presentations',
+            'Module 3: Internet and Email Applications',
+            'Module 4: Databases - Introduction to MS Access',
+            'Module 4: Pharmacy Software Applications',
+            'Module 5: Statistical Analysis using Computers',
+            'Module 5: Bioinformatics Introduction'
+        ]
+    }
+};
+
+function importBpharmTemplate(subject) {
+    const template = bpharmTemplates[subject];
+    if (!template) return;
+    if (confirm(`Import ${template.name}?\n${template.topics.length} topics will be added!`)) {
+        if (subjects.find(s => s.name === template.name)) {
+            alert('This subject already exists!');
+            return;
+        }
+        subjects.push({
+            id: Date.now(),
+            name: template.name,
+            topics: template.topics.map((t, i) => ({ id: Date.now() + i, name: t, completed: false })),
+            createdAt: new Date().toISOString()
+        });
+        saveToSupabase();
+        updateStats();
+        renderSubjects();
+        renderRingChart();
+        alert(`✅ ${template.name} imported!\n${template.topics.length} topics added.`);
+    }
+}

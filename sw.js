@@ -1,4 +1,4 @@
-const CACHE_NAME = 'synapse-v10';
+const CACHE_NAME = 'synapse-v11';
 const urlsToCache = [
     '/',
     '/index.html',

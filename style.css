@@ -756,3 +756,32 @@ body {
     font-size: 11px;
     color: #7c3aed;
   }
+/* Revision Items */
+.revision-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px;
+    background: #0d0d14;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    border: 1px solid #7c3aed;
+    animation: slideIn 0.3s ease;
+}
+
+.revision-info {
+    flex: 1;
+}
+
+.revision-topic {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+.revision-subject {
+    font-size: 11px;
+    color: #a855f7;
+}

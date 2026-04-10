@@ -72,6 +72,32 @@
                 <div class="stat-card"><span class="stat-number" id="completedTopics">0</span><span class="stat-label">Done</span></div>
                 <div class="stat-card"><span class="stat-number" id="streakCount">0🔥</span><span class="stat-label">Streak</span></div>
             </div>
+            <!-- Revision Due Today -->
+<div class="card" id="revisionCard">
+    <h2 class="card-title">📅 Revise Today</h2>
+    <div id="revisionList">
+        <div class="empty-state">
+            <div class="empty-state-icon">✅</div>
+            <div class="empty-state-text">No revisions due today!</div>
+        </div>
+    </div>
+</div>
+
+<!-- Notification Settings -->
+<div class="card" id="notificationCard">
+    <h2 class="card-title">🔔 Study Reminder</h2>
+    <p style="color:#666;font-size:12px;margin-bottom:12px">
+        Get daily reminder for revisions
+    </p>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+        <input type="time" id="reminderTime" value="08:00" class="input" style="margin-bottom:0;width:auto"/>
+        <button onclick="saveReminder()" class="btn-primary">Set Reminder</button>
+    </div>
+    <button onclick="requestNotificationPermission()" class="btn-secondary" style="width:100%;padding:10px">
+        🔔 Enable Notifications
+    </button>
+    <p id="notificationStatus" style="color:#a855f7;font-size:12px;margin-top:8px;text-align:center"></p>
+</div>
             <div class="card">
                 <h2 class="card-title">🎯 Overall Progress</h2>
                 <div class="ring-container">

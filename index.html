@@ -106,7 +106,40 @@
                 </div>
             </div>
         </div>
-
+<!-- Revision Technique Selector -->
+<div class="card">
+    <h2 class="card-title">🧠 Revision Technique</h2>
+    <p style="color:#555;font-size:12px;margin-bottom:16px;font-weight:500">
+        Choose how you want to revise
+    </p>
+    <div class="technique-grid">
+        <div class="technique-card selected" id="tech-spaced" onclick="selectTechnique('spaced')">
+            <div class="technique-icon">📅</div>
+            <div class="technique-name">Spaced Repetition</div>
+            <div class="technique-desc">Day 1, 3, 7, 14, 30</div>
+        </div>
+        <div class="technique-card" id="tech-daily" onclick="selectTechnique('daily')">
+            <div class="technique-icon">🔄</div>
+            <div class="technique-name">Daily Revision</div>
+            <div class="technique-desc">Revise every day</div>
+        </div>
+        <div class="technique-card" id="tech-weekly" onclick="selectTechnique('weekly')">
+            <div class="technique-icon">📆</div>
+            <div class="technique-name">Weekly Revision</div>
+            <div class="technique-desc">Every 7 days</div>
+        </div>
+        <div class="technique-card" id="tech-custom" onclick="selectTechnique('custom')">
+            <div class="technique-icon">⚙️</div>
+            <div class="technique-name">Custom</div>
+            <div class="technique-desc">Set your own days</div>
+        </div>
+    </div>
+    <div id="customDaysInput" style="display:none">
+        <input type="text" id="customDays" placeholder="Enter days e.g. 1,3,5,10,20" class="input"/>
+        <button onclick="saveCustomDays()" class="btn-primary" style="width:100%">Save Custom Schedule</button>
+    </div>
+    <p id="techniqueStatus" style="color:#a855f7;font-size:12px;text-align:center;font-weight:600;margin-top:8px"></p>
+</div>
         <div id="subjectsTab" style="display:none">
             <div class="card">
                 <h2 class="card-title">➕ Add Subject</h2>

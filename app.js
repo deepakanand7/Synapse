@@ -31,6 +31,8 @@ async function showApp() {
     checkStreak();
     renderRingChart();
     updateAvatar();
+    renderRevisionList();
+    loadReminderSettings();
 }
 
 function updateAvatar() {
@@ -622,5 +624,155 @@ function importBpharmTemplate(subject) {
         renderSubjects();
         renderRingChart();
         alert(`✅ ${template.name} imported!\n${template.topics.length} topics added.`);
+    }
+}
+// Spaced Repetition System
+const REVISION_INTERVALS = [1, 3, 7, 14, 30];
+
+function getRevisionDates(completedDate) {
+    const dates = [];
+    const base = new Date(completedDate);
+    REVISION_INTERVALS.forEach(days => {
+        const date = new Date(base);
+        date.setDate(date.getDate() + days);
+        dates.push(date.toDateString());
+    });
+    return dates;
+}
+
+function getDueRevisions() {
+    const today = new Date().toDateString();
+    const due = [];
+    subjects.forEach(subject => {
+        subject.topics.forEach(topic => {
+            if (topic.completed && topic.completedAt) {
+                const revisionDates = getRevisionDates(topic.completedAt);
+                const nextRevision = revisionDates.find(date => {
+                    const d = new Date(date);
+                    const t = new Date(today);
+                    return d <= t;
+                });
+                if (nextRevision && !topic.lastRevised) {
+                    due.push({
+                        subjectName: subject.name,
+                        topicName: topic.name,
+                        subjectId: subject.id,
+                        topicId: topic.id,
+                        dueDate: nextRevision
+                    });
+                } else if (topic.lastRevised) {
+                    const nextAfterRevision = getRevisionDates(topic.lastRevised)
+                        .find(date => new Date(date) > new Date(topic.lastRevised));
+                    if (nextAfterRevision && new Date(nextAfterRevision) <= new Date(today)) {
+                        due.push({
+                            subjectName: subject.name,
+                            topicName: topic.name,
+                            subjectId: subject.id,
+                            topicId: topic.id,
+                            dueDate: nextAfterRevision
+                        });
+                    }
+                }
+            }
+        });
+    });
+    return due;
+}
+
+function renderRevisionList() {
+    const due = getDueRevisions();
+    const list = document.getElementById('revisionList');
+    if (!list) return;
+
+    if (due.length === 0) {
+        list.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-state-icon">✅</div>
+                <div class="empty-state-text">No revisions due today!<br>Keep studying 💪</div>
+            </div>`;
+        return;
+    }
+
+    list.innerHTML = due.map(item => `
+        <div class="revision-item">
+            <div class="revision-info">
+                <div class="revision-topic">${item.topicName}</div>
+                <div class="revision-subject">${item.subjectName}</div>
+            </div>
+            <button onclick="markRevised(${item.subjectId}, ${item.topicId})" 
+                class="btn-primary" style="padding:6px 12px;font-size:12px">
+                ✅ Revised
+            </button>
+        </div>
+    `).join('');
+}
+
+function markRevised(subjectId, topicId) {
+    const subject = subjects.find(s => s.id === subjectId);
+    if (subject) {
+        const topic = subject.topics.find(t => t.id === topicId);
+        if (topic) {
+            topic.lastRevised = new Date().toISOString();
+            totalXP += 5;
+            showXPPopup('+5 XP Revised!');
+            saveToSupabase();
+            renderRevisionList();
+            updateStats();
+            updateXPBar();
+        }
+    }
+}
+
+// Notifications
+async function requestNotificationPermission() {
+    const status = document.getElementById('notificationStatus');
+    if (!('Notification' in window)) {
+        status.textContent = '❌ Notifications not supported on this browser';
+        return;
+    }
+    const permission = await Notification.requestPermission();
+    if (permission === 'granted') {
+        status.textContent = '✅ Notifications enabled!';
+        scheduleNotification();
+    } else {
+        status.textContent = '❌ Permission denied. Enable in browser settings.';
+    }
+}
+
+function saveReminder() {
+    const time = document.getElementById('reminderTime').value;
+    localStorage.setItem('reminderTime', time);
+    document.getElementById('notificationStatus').textContent = `✅ Reminder set for ${time}`;
+    scheduleNotification();
+}
+
+function scheduleNotification() {
+    const time = localStorage.getItem('reminderTime') || '08:00';
+    const [hours, minutes] = time.split(':').map(Number);
+    const now = new Date();
+    const scheduled = new Date();
+    scheduled.setHours(hours, minutes, 0, 0);
+    if (scheduled <= now) {
+        scheduled.setDate(scheduled.getDate() + 1);
+    }
+    const delay = scheduled - now;
+    setTimeout(() => {
+        const due = getDueRevisions();
+        if (due.length > 0) {
+            new Notification('⚡ Synapse Study Reminder', {
+                body: `You have ${due.length} topics to revise today!`,
+                icon: 'https://raw.githubusercontent.com/deepakanand7/synapse/main/icon.png'
+            });
+        }
+        scheduleNotification();
+    }, delay);
+}
+
+function loadReminderSettings() {
+    const time = localStorage.getItem('reminderTime');
+    if (time) {
+        const input = document.getElementById('reminderTime');
+        if (input) input.value = time;
+        scheduleNotification();
     }
 }

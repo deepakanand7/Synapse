@@ -9,12 +9,12 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "https://raw.githubusercontent.com/deepakanand7/synapse/main/icon.png",
+      "src": "https://raw.githubusercontent.com/deepakanand7/synapse/main/icon2.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "https://raw.githubusercontent.com/deepakanand7/synapse/main/icon.png",
+      "src": "https://raw.githubusercontent.com/deepakanand7/synapse/main/icon2.png",
       "sizes": "512x512",
       "type": "image/png"
     }

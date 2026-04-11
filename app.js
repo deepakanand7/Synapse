@@ -768,11 +768,81 @@ function scheduleNotification() {
     }, delay);
 }
 
-function loadReminderSettings() {
+function loadReminderSettings() 
+loadTechniqueSettings();
     const time = localStorage.getItem('reminderTime');
     if (time) {
         const input = document.getElementById('reminderTime');
         if (input) input.value = time;
         scheduleNotification();
+    }
+}
+// Revision Technique Selector
+function selectTechnique(technique) {
+    // Remove selected from all
+    document.querySelectorAll('.technique-card').forEach(card => {
+        card.classList.remove('selected');
+    });
+
+    // Add selected to chosen
+    document.getElementById('tech-' + technique).classList.add('selected');
+
+    // Save choice
+    localStorage.setItem('revisionTechnique', technique);
+
+    // Show/hide custom input
+    const customInput = document.getElementById('customDaysInput');
+    const status = document.getElementById('techniqueStatus');
+
+    if (technique === 'custom') {
+        customInput.style.display = 'block';
+        status.textContent = '';
+    } else {
+        customInput.style.display = 'none';
+        const messages = {
+            spaced: '✅ Spaced Repetition: Day 1, 3, 7, 14, 30',
+            daily: '✅ Daily Revision selected',
+            weekly: '✅ Weekly Revision: Every 7 days'
+        };
+        status.textContent = messages[technique];
+        renderRevisionList();
+    }
+}
+
+function saveCustomDays() {
+    const input = document.getElementById('customDays').value;
+    const days = input.split(',').map(d => parseInt(d.trim())).filter(d => !isNaN(d) && d > 0);
+    if (days.length === 0) {
+        alert('Please enter valid days like: 1,3,5,10,20');
+        return;
+    }
+    localStorage.setItem('customRevisionDays', JSON.stringify(days));
+    document.getElementById('techniqueStatus').textContent = `✅ Custom: Day ${days.join(', ')}`;
+    document.getElementById('customDaysInput').style.display = 'none';
+    renderRevisionList();
+}
+
+function getRevisionIntervals() {
+    const technique = localStorage.getItem('revisionTechnique') || 'spaced';
+    if (technique === 'daily') return [1, 2, 3, 4, 5, 6, 7];
+    if (technique === 'weekly') return [7, 14, 21, 28];
+    if (technique === 'custom') {
+        const custom = localStorage.getItem('customRevisionDays');
+        return custom ? JSON.parse(custom) : REVISION_INTERVALS;
+    }
+    return REVISION_INTERVALS;
+}
+
+function loadTechniqueSettings() {
+    const saved = localStorage.getItem('revisionTechnique');
+    if (saved) {
+        document.querySelectorAll('.technique-card').forEach(card => {
+            card.classList.remove('selected');
+        });
+        const card = document.getElementById('tech-' + saved);
+        if (card) card.classList.add('selected');
+        if (saved === 'custom') {
+            document.getElementById('customDaysInput').style.display = 'block';
+        }
     }
 }
